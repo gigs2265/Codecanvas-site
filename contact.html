@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="mainpage.css" />
+    <script src="mainpage.js" defer></script>
+    <link rel="icon" href="codelogo.png" />
+    <title>Contact | CodeCanvas — Get a Fast, Responsive Website</title>
+    <meta
+      name="description"
+      content="Contact CodeCanvas to get a fast, responsive, SEO-friendly website. Share your project goals and get a quote."
+    />
+    <link rel="canonical" href="https://www.your-domain.com/contact.html" />
+
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="mainpage.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="logo"><img src="codelogo.png" alt="" /></div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero_inner"></div>
+        <h1 class="hero__title">
+          <span class="hero__titlespan">Con</span>tact
+          <span class="hero__titlespan">Me</span>
+        </h1>
+        <p id="titlesub"></p>
+      </section>
+
+      <section class="cntform" role="form" aria-labelledby="contact-title">
+        <h2 id="contact-title" class="visually-hidden">Contact Form</h2>
+        <form action="#" method="post" autocomplete="on" novalidate>
+          <label for="firstname">First name</label>
+          <input
+            id="firstname"
+            name="given-name"
+            autocomplete="given-name"
+            required
+          />
+
+          <label for="lastname">Last name</label>
+          <input
+            id="lastname"
+            name="family-name"
+            autocomplete="family-name"
+            required
+          />
+
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            inputmode="email"
+            required
+          />
+
+          <label for="phone">Phone number</label>
+          <input
+            type="tel"
+            id="phone"
+            name="tel"
+            autocomplete="tel"
+            inputmode="tel"
+          />
+
+          <label for="description">Brief description of what you want</label>
+          <textarea
+            id="description"
+            name="description"
+            maxlength="500"
+            rows="4"
+            placeholder="Type here"
+          ></textarea>
+
+          <button type="submit" class="btn">Send</button>
+        </form>
+      </section>
+
+      <footer>
+        <h2 id="footertitle">Code Canvas</h2>
+        <p id="footersub">Ideas. Designed. Deployed.</p>
+      </footer>
+    </main>
+  </body>
+</html>

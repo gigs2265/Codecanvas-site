@@ -1,0 +1,453 @@
+
+
+
+body{
+  background: linear-gradient(180deg, #363a49 0%, #10141d 50%, #171922 100%);
+
+
+}
+:root{
+  --bg-start: #0e0f13;
+  --bg-end: #171922;
+  --accent: #8ef0ff;
+  --text: #e9ecf1;
+  --muted: #b7beca;
+  --ring: rgba(236, 236, 236, 0.281);
+}
+
+.hero{
+  position: relative;
+  isolation: isolate;
+  padding: clamp(4rem, 8vw, 8rem) 1.25rem;
+  background: radial-gradient(1200px 600px at 70% -10%, var(--ring), transparent 60%),
+              linear-gradient(180deg, var(--bg-start), var(--bg-end));
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero::after{
+ 
+  content:"";
+  position:absolute; inset:0;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(70% 70% at 50% 30%, #000 60%, transparent 100%);
+  pointer-events:none;
+}
+.hero__titlespan.pixels {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(2rem, 8vw, 6rem);
+  font-weight: 500;
+  color: #8ef0ff;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: glitch 2s infinite;
+}
+
+.pixels::before,
+.pixels::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: none; 
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0); 
+}
+
+.pixels::before {
+  left: 2px;
+  text-shadow: -2px 0 red;
+  animation: glitchTop 2s infinite linear alternate-reverse;
+}
+
+.pixels::after {
+  left: -2px;
+  text-shadow: -2px 0 blue;
+  animation: glitchBottom 1.5s infinite linear alternate-reverse;
+}
+
+
+
+
+@keyframes glitch {
+  0% {
+    transform: none;
+  }
+  20% {
+    transform: skew(0.5deg);
+  }
+  40% {
+    transform: skew(-0.5deg);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  80% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes glitchTop {
+  0% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  10% {
+    clip: rect(10px, 9999px, 50px, 0);
+    transform: translate(-5px, -3px);
+  }
+  20% {
+    clip: rect(85px, 9999px, 140px, 0);
+    transform: translate(3px, 0);
+  }
+  30% {
+    clip: rect(20px, 9999px, 65px, 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+}
+
+@keyframes glitchBottom {
+  0% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  10% {
+    clip: rect(55px, 9999px, 90px, 0);
+    transform: translate(3px, 2px);
+  }
+  20% {
+    clip: rect(5px, 9999px, 80px, 0);
+    transform: translate(-2px, -1px);
+  }
+  30% {
+    clip: rect(45px, 9999px, 65px, 0);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+}
+
+
+.hero__title{
+  font-family: "Inter", sans-serif;
+  font-size: clamp(2rem, 2vw, 8rem);
+  line-height: 1.05;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+  text-align: center;
+  
+}
+.hero_inner {
+  animation: slide-down 1s ease-in both; 
+  animation-delay: 0.3s;
+}
+
+.hero__title span{
+  color: var(--accent);
+  text-shadow: 0 0 22px rgba(142,240,255,0.35);
+}
+.abtme {
+  font-family: "Press Start 2P", monospace;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.abtme h2 {
+   font-family: "Press Start 2P", monospace;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: 1rem; 
+}
+
+.abtmep {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1rem, 1vw, 1.25rem);
+  color: #ffffff;
+  max-width: 65ch;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-align: center; 
+}
+.selfie {
+  display: block;
+  height: auto;
+  width: clamp(150px, 30vw, 300px);
+  margin: 0 auto;
+  border: 10px solid ;
+  border-color: #8ef0ff;
+  border-radius: 20%;
+}
+
+
+
+
+
+
+#titlesub{
+  font-family: "Press Start 2P", monospace;
+   color:  #ffffff;
+   display: inline-block;
+  font-size: clamp(1rem, 2vw, 2rem);
+  margin-top: 0.5em;  
+  margin-bottom: 0.25em;
+  margin-right: 0.2em; 
+  }
+  .pricinghead.pixels{
+    position: relative;
+    font-family: "Press Start 2P", monospace;
+   color:  #8ef0ff;
+     text-shadow: 0 0 22px rgba(142,240,255,0.35);
+     font-weight: 100;
+   display: inline-block;
+  font-size: clamp(1rem, 2vw, 2rem);
+  margin-top: 0.5em;  
+  margin-bottom: 0.25em;
+  margin-right: 0.2em; 
+ 
+
+  }
+  .ideas, .designed, .deployed { opacity: 0; }
+.ideas {
+  animation: slide-in 1s ease-in 1.2s both;
+   font-family: "Press Start 2P", monospace;
+}
+
+.designed {
+  animation: slide-in 1s ease-in 2.4s both;
+   font-family: "Press Start 2P", monospace;
+}
+
+.deployed {
+  animation: slide-in 1s ease-in 3.6s both;
+   font-family: "Press Start 2P", monospace;
+}
+  #footersub{
+    font-size: clamp(1rem, 2vw, 2rem);
+
+
+  }
+  #footertitle, #footersub{
+    font-family: "Press Start 2P", monospace;
+
+     color:  #8ef0ff;
+ font-size: clamp(1rem, 2vw, 2rem);
+  
+  }
+ 
+ .worshipvid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;           
+  max-width: 960px;      
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;  
+  position: relative;
+  box-shadow: 0 0 20px var(--ring);
+  border: 4px solid var(--accent);
+}
+
+.worshipvid video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  object-fit: cover;  
+  background-color: black;   
+}
+
+
+
+
+#cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  border-radius: 20%;
+  margin: 0 auto; 
+}
+
+
+
+.navbar {
+  
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+background: 
+              linear-gradient(180deg, var(--bg-start), var(--bg-end));
+  padding: 0rem;
+  color: white;
+  z-index: 1001; 
+}
+
+.logo img{
+  display: block;
+  width: 130px;   
+  height: auto;
+  
+}
+
+
+.nav-links {
+
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  font-family: "Press Start 2P", monospace;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity .2s ease;
+  display: block;         
+  padding: .5rem .75rem;
+  font-weight: 500;
+}
+
+.nav-links a:hover { opacity: .8; }
+
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+.services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  max-width: 100%;
+
+}
+#servicedes{
+font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #ffffff;
+  max-width: 65ch;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-align: center; 
+
+}
+.cntform {
+  max-width: 400px;           
+  margin: 2rem auto;           
+  padding: 2rem;
+  background: #1a1a1a;         
+  border-radius: 10px;         
+  box-shadow: 0 4px 10px rgba(0,0,0,.4); 
+  color:  #8ef0ff;                
+}
+
+.cntform form {
+  display: flex;
+  flex-direction: column;  
+  gap: 1rem;              
+}
+
+.cntform label {
+  font-weight: bold;
+  margin-bottom: .25rem;
+}
+
+.cntform input {
+  padding: .5rem;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.cntform input:focus {
+  border-color: #8ef0ff;   
+  box-shadow: 0 0 5px #8ef0ff;
+}
+.cntform .btn{
+  font-weight: bold;
+  color: #8ef0ff;
+  background-color: #545b7c;
+    padding: .5rem;
+  border: 3px solid #444;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 40%;
+
+
+}
+@keyframes slide-in {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;  
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;   
+  }
+}
+@keyframes slide-down{
+ from {
+    transform: translateY(-50px);
+    opacity: 0;  
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;   
+  }
+
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+
+
+  .nav-links {
+   
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 280px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: #111;
+    padding-top: 4rem;
+    padding-inline: 1rem;
+    gap: .25rem;
+    transition: left 0.5s ease;
+    z-index: 1000;               
+    box-shadow: -10px 0 30px rgba(0,0,0,.4);
+  }
+
+ 
+  .nav-links.show { left: 0; }
+
+  .nav-links li { margin: 0; }
+  .nav-links a {
+    border-radius: .5rem;
+  }
+}
