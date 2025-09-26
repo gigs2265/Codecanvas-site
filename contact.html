@@ -49,7 +49,22 @@
 
       <section class="cntform" role="form" aria-labelledby="contact-title">
         <h2 id="contact-title" class="visually-hidden">Contact Form</h2>
-        <form action="#" method="post" autocomplete="on" novalidate>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/thanks.html"
+        >
+          <!-- Hidden inputs required by Netlify -->
+          <input type="hidden" name="form-name" value="contact" />
+
+          <!-- Honeypot field for spam protection -->
+          <p hidden>
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <!-- First Name -->
           <label for="firstname">First name</label>
           <input
             id="firstname"
@@ -58,6 +73,7 @@
             required
           />
 
+          <!-- Last Name -->
           <label for="lastname">Last name</label>
           <input
             id="lastname"
@@ -66,6 +82,7 @@
             required
           />
 
+          <!-- Email -->
           <label for="email">Email</label>
           <input
             type="email"
@@ -76,6 +93,7 @@
             required
           />
 
+          <!-- Phone -->
           <label for="phone">Phone number</label>
           <input
             type="tel"
@@ -85,6 +103,7 @@
             inputmode="tel"
           />
 
+          <!-- Description -->
           <label for="description">Brief description of what you want</label>
           <textarea
             id="description"
