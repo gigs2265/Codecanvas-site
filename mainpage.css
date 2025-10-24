@@ -296,6 +296,15 @@ background:
   color: white;
   z-index: 1001; 
 }
+.mock {
+  display: block;
+  max-width: 50%;
+  height: auto;
+  border-radius: 20%;
+  border: #8ef0ff ;
+  margin: 0 auto; 
+}
+
 
 .logo img{
   display: block;
@@ -303,6 +312,7 @@ background:
   height: auto;
   
 }
+
 
 
 .nav-links {
