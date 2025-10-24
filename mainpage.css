@@ -537,6 +537,11 @@ font-size: clamp(1rem, 2vw, 1.25rem);
 
 
 
+@media (max-width: 768px) {
+  .mock {
+    max-width: 90%;   
+  }
+}
 
 
 @media (max-width: 768px) {
