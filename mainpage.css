@@ -267,6 +267,7 @@ body{
   border: 0;
   object-fit: cover;  
   background-color: black;   
+  object-fit: contain;
 }
 
 
