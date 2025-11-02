@@ -15,8 +15,6 @@
       rel="stylesheet"
     />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-
-
     <script src="mainpage.js" defer></script>
       <title>CodeCanvas | Freelance Web Design — Ideas. Designed. Deployed.</title>
        <meta name="description" content="CodeCanvas builds fast, responsive, SEO-driven websites that transform your vision into reality. Freelance web design with a focus on performance, style, and results." />
@@ -60,19 +58,99 @@
       <section>
         <header>
           <div class="hero__title">
-          Google likes you more when your site doesn’t suck.</div>
+          Google likes you more when your site doesn't suck.</div>
           </div>
         </header>
         <div class="abtme">
           <p class="abtmep">
-            At Code Canvas, my mission is to transform your vision into a digital reality by crafting responsive, SEO-driven websites that don’t just look good, they perform. 
-            Every design is built to adapt seamlessly across devices, elevate your search visibility, and reflect your brand’s unique identity. The goal isn’t just a website, 
+            At Code Canvas, my mission is to transform your vision into a digital reality by crafting responsive, SEO-driven websites that don't just look good, they perform. 
+            Every design is built to adapt seamlessly across devices, elevate your search visibility, and reflect your brand's unique identity. The goal isn't just a website, 
             but a powerful online presence that works as hard as you do.
           </p>
         </div>
-        <section class="worshipvid">
-          <video src="sinlessex.mp4" controls poster="codelogo.png"></video>
+        
+
+        <!-- Featured Work Gallery Section -->
+        <section class="featured-work">
+          <h2 class="featured-title pixels" data-text="Featured Work">Featured Work</h2>
+          <p class="featured-subtitle">Recent projects that showcase design & performance</p>
+          
+          <div class="gallery-container">
+            <button class="gallery-nav prev" id="prevBtn">&#10094;</button>
+            
+            <div class="gallery-wrapper">
+              <div class="gallery-track" id="galleryTrack">
+                
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item">
+                  <div class="gallery-image-container">
+                    <img src="anthony.png" alt="Project 1 Desktop View" class="gallery-img desktop">
+                    <img src="anthonyphone.png" alt="Project 1 Mobile View" class="gallery-img mobile">
+                  </div>
+                  <div class="gallery-info">
+                    <h3 class="project-name">Anthony's Car Care</h3>
+                    <p class="project-desc">Fully responsive car maitnance/repair website</p>
+                    <div class="project-tags">
+                      <span class="tag">Html</span>
+                      <span class="tag">CSS</span>
+                      <span class="tag">Js</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item">
+                  <div class="gallery-image-container">
+                    <img src="screenshot2-desktop.png" alt="Project 2 Desktop View" class="gallery-img desktop">
+                    <img src="screenshot2-mobile.png" alt="Project 2 Mobile View" class="gallery-img mobile">
+                  </div>
+                  <div class="gallery-info">
+                    <h3 class="project-name">Portfolio Site</h3>
+                    <p class="project-desc">Minimal design with smooth animations and perfect Lighthouse scores</p>
+                    <div class="project-tags">
+                      <span class="tag">HTML/CSS</span>
+                      <span class="tag">JavaScript</span>
+                      <span class="tag">SEO</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item">
+                  <div class="gallery-image-container">
+                    <img src="screenshot3-desktop.png" alt="Project 3 Desktop View" class="gallery-img desktop">
+                    <img src="screenshot3-mobile.png" alt="Project 3 Mobile View" class="gallery-img mobile">
+                  </div>
+                  <div class="gallery-info">
+                    <h3 class="project-name">Restaurant Website</h3>
+                    <p class="project-desc">Modern design with online ordering and reservation system</p>
+                    <div class="project-tags">
+                      <span class="tag">WordPress</span>
+                      <span class="tag">WooCommerce</span>
+                      <span class="tag">Custom Theme</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <button class="gallery-nav next" id="nextBtn">&#10095;</button>
+          </div>
+
+          <div class="gallery-dots" id="galleryDots"></div>
+
+          <a href="portfolio.html" class="view-all-link">View Full Portfolio →</a>
         </section>
+        
+
+      
+      </section>
+       <div class="cta-section final">
+          <h2 class="cta-heading pixels" data-text="Let's Build Something">Let's Build Something</h2>
+          <p class="cta-text">Your vision. My expertise. Let's make it happen.</p>
+          <a href="contact.html" class="cta-button primary">Get Started Today</a>
+        </div>
       </section>
     </main>
   </body>
