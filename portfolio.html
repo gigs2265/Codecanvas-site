@@ -51,6 +51,22 @@
         <!-- Project cards will be inserted here by JavaScript -->
       </div>
     </div>
+
+    <!-- Screenshot Modal -->
+    <div id="screenshot-modal" class="screenshot-modal">
+      <div class="modal-content">
+        <button class="modal-close" id="modal-close">&times;</button>
+        <h2 class="modal-title" id="modal-title"></h2>
+        <div class="screenshot-container">
+          <img id="modal-image" src="" alt="Project Screenshot">
+          <div class="screenshot-label" id="screenshot-label"></div>
+        </div>
+        <div class="screenshot-nav">
+          <button class="screenshot-btn" id="prev-screenshot">← Previous</button>
+          <button class="screenshot-btn" id="next-screenshot">Next →</button>
+        </div>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -61,7 +77,10 @@
         category: "responsive",
         tech: ["HTML", "CSS", "JavaScript"],
         image: "anthony.png",
-        liveLink: "#",
+        screenshots: [
+          { src: "anthony.png", label: "Desktop View" },
+          { src: "anthonyphone.png", label: "Mobile View" }
+        ],
         codeLink: "#"
       },
       {
@@ -111,12 +130,12 @@
       },
     ];
 
-    function createProjectCard(project) {
+    function createProjectCard(project, index) {
       return `
         <div class="project-card" data-category="${project.category}">
           <div class="project-image">
-            ${project.image 
-              ? `<img src="${project.image}" alt="${project.title}">` 
+            ${project.image
+              ? `<img src="${project.image}" alt="${project.title}">`
               : `<div class="placeholder-image">Project Preview</div>`
             }
             <span class="project-tag">${project.category}</span>
@@ -128,7 +147,10 @@
               ${project.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
             </div>
             <div class="project-links">
-              <a href="${project.liveLink}" class="project-link" target="_blank">View Live</a>
+              ${project.screenshots
+                ? `<button class="project-link screenshot-trigger" data-project="${index}">View Screenshots</button>`
+                : `<a href="${project.liveLink}" class="project-link" target="_blank">View Live</a>`
+              }
               <a href="${project.codeLink}" class="project-link" target="_blank">View Code</a>
             </div>
           </div>
@@ -137,7 +159,7 @@
     }
 
     const grid = document.getElementById('portfolio-grid');
-    grid.innerHTML = projects.map(createProjectCard).join('');
+    grid.innerHTML = projects.map((project, index) => createProjectCard(project, index)).join('');
 
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
@@ -145,7 +167,7 @@
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
-        
+
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
@@ -157,6 +179,81 @@
           }
         });
       });
+    });
+
+    // Screenshot Modal Functionality
+    const modal = document.getElementById('screenshot-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const screenshotLabel = document.getElementById('screenshot-label');
+    const modalClose = document.getElementById('modal-close');
+    const prevBtn = document.getElementById('prev-screenshot');
+    const nextBtn = document.getElementById('next-screenshot');
+
+    let currentProject = null;
+    let currentScreenshotIndex = 0;
+
+    function openModal(projectIndex) {
+      currentProject = projects[projectIndex];
+      currentScreenshotIndex = 0;
+      modalTitle.textContent = currentProject.title;
+      updateScreenshot();
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      currentProject = null;
+    }
+
+    function updateScreenshot() {
+      if (currentProject && currentProject.screenshots) {
+        const screenshot = currentProject.screenshots[currentScreenshotIndex];
+        modalImage.src = screenshot.src;
+        modalImage.alt = screenshot.label;
+        screenshotLabel.textContent = screenshot.label;
+      }
+    }
+
+    function nextScreenshot() {
+      if (currentProject && currentProject.screenshots) {
+        currentScreenshotIndex = (currentScreenshotIndex + 1) % currentProject.screenshots.length;
+        updateScreenshot();
+      }
+    }
+
+    function prevScreenshot() {
+      if (currentProject && currentProject.screenshots) {
+        currentScreenshotIndex = (currentScreenshotIndex - 1 + currentProject.screenshots.length) % currentProject.screenshots.length;
+        updateScreenshot();
+      }
+    }
+
+    // Event listeners for modal
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    prevBtn.addEventListener('click', prevScreenshot);
+    nextBtn.addEventListener('click', nextScreenshot);
+
+    // Event listeners for screenshot triggers
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('screenshot-trigger')) {
+        const projectIndex = parseInt(e.target.dataset.project);
+        openModal(projectIndex);
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (modal.classList.contains('active')) {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') prevScreenshot();
+        if (e.key === 'ArrowRight') nextScreenshot();
+      }
     });
   </script>
 </body>
