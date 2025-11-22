@@ -757,8 +757,133 @@ body {
   max-width: 65ch;
   margin: 0 auto;
   line-height: 1.6;
-  text-align: center; 
+  text-align: center;
 }
+
+/* Mission Card with Neon Border */
+.mission-card-wrapper {
+  max-width: 1000px;
+  margin: clamp(3rem, 6vw, 6rem) auto;
+  padding: 0 1.25rem;
+}
+
+.mission-card {
+  position: relative;
+  background: radial-gradient(1200px 600px at 70% -10%, var(--ring), transparent 60%),
+              linear-gradient(180deg, var(--bg-start), var(--bg-end));
+  border: 2px solid var(--accent);
+  border-radius: 1rem;
+  padding: clamp(2rem, 4vw, 3rem);
+  box-shadow: 0 0 30px rgba(142, 240, 255, 0.3),
+              inset 0 0 60px rgba(142, 240, 255, 0.05);
+  text-align: center;
+  transition: all 0.3s ease;
+  animation: fadeIn 1s ease 0.5s both;
+}
+
+.mission-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 40px rgba(142, 240, 255, 0.5),
+              inset 0 0 80px rgba(142, 240, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.mission-heading {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--accent);
+  text-shadow: 0 0 25px rgba(142, 240, 255, 0.4);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.6;
+  position: relative;
+  animation: glitch 3s infinite;
+}
+
+.mission-text {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--text);
+  max-width: 70ch;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .mission-card-wrapper {
+    margin: clamp(2rem, 4vw, 4rem) auto;
+    padding: 0 1rem;
+  }
+
+  .mission-card {
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-width: 2px;
+  }
+
+  .mission-heading {
+    font-size: clamp(0.85rem, 3.5vw, 1.2rem);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .mission-text {
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    line-height: 1.7;
+  }
+
+  .mission-card:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-card-wrapper {
+    padding: 0 0.75rem;
+  }
+
+  .mission-card {
+    padding: 1.25rem;
+  }
+
+  .mission-heading {
+    font-size: clamp(0.75rem, 4vw, 1rem);
+    letter-spacing: 0.5px;
+  }
+
+  .mission-text {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+}
+
+/* Service Note Variant */
+.mission-card.service-note {
+  background: radial-gradient(800px 400px at 50% 50%, rgba(236, 236, 236, 0.08), transparent 70%),
+              linear-gradient(180deg, rgba(14, 15, 19, 0.6), rgba(23, 25, 34, 0.6));
+  border-color: rgba(142, 240, 255, 0.5);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.mission-card.service-note:hover {
+  box-shadow: 0 0 25px rgba(142, 240, 255, 0.3),
+              inset 0 0 40px rgba(142, 240, 255, 0.05);
+}
+
+.mission-card.service-note .mission-text {
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  color: var(--muted);
+}
+
+.mission-card.service-note strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .mission-card.service-note {
+    padding: 1.25rem;
+  }
+}
+
 .selfie {
   display: block;
   height: auto;
