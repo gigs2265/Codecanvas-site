@@ -16,8 +16,8 @@
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <button class="hamburger" id="hamburger">&#9776;</button>
+    <nav class="navbar" aria-label="Primary">
+      <button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -187,8 +187,8 @@
     const modalTitle = document.getElementById('modal-title');
     const screenshotLabel = document.getElementById('screenshot-label');
     const modalClose = document.getElementById('modal-close');
-    const prevBtn = document.getElementById('prev-screenshot');
-    const nextBtn = document.getElementById('next-screenshot');
+    const prevScreenshotBtn = document.getElementById('prev-screenshot');
+    const nextScreenshotBtn = document.getElementById('next-screenshot');
 
     let currentProject = null;
     let currentScreenshotIndex = 0;
@@ -236,8 +236,8 @@
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
-    prevBtn.addEventListener('click', prevScreenshot);
-    nextBtn.addEventListener('click', nextScreenshot);
+    prevScreenshotBtn.addEventListener('click', prevScreenshot);
+    nextScreenshotBtn.addEventListener('click', nextScreenshot);
 
     // Event listeners for screenshot triggers
     document.addEventListener('click', (e) => {
