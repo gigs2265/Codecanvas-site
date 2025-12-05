@@ -48,7 +48,7 @@
       </div>
 
       <div class="portfolio-grid" id="portfolio-grid">
-        <!-- Project cards will be inserted here by JavaScript -->
+        
       </div>
     </div>
 
@@ -181,7 +181,7 @@
       });
     });
 
-    // Screenshot Modal Functionality
+   
     const modal = document.getElementById('screenshot-modal');
     const modalImage = document.getElementById('modal-image');
     const modalTitle = document.getElementById('modal-title');
@@ -231,7 +231,7 @@
       }
     }
 
-    // Event listeners for modal
+    
     modalClose.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
@@ -239,7 +239,7 @@
     prevScreenshotBtn.addEventListener('click', prevScreenshot);
     nextScreenshotBtn.addEventListener('click', nextScreenshot);
 
-    // Event listeners for screenshot triggers
+    
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('screenshot-trigger')) {
         const projectIndex = parseInt(e.target.dataset.project);
@@ -247,7 +247,7 @@
       }
     });
 
-    // Keyboard navigation
+    
     document.addEventListener('keydown', (e) => {
       if (modal.classList.contains('active')) {
         if (e.key === 'Escape') closeModal();

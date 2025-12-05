@@ -96,3 +96,143 @@ if (galleryTrack && prevBtn && nextBtn && dotsContainer) {
     }
   }
 }
+
+// ============================================
+// MOBILE EXPERIENCE ENHANCEMENTS
+// ============================================
+
+// Ripple Effect on Touch
+function createRipple(event) {
+  const button = event.currentTarget;
+
+  // Check if we're on mobile
+  if (window.innerWidth > 768) return;
+
+  const ripple = document.createElement('span');
+  ripple.classList.add('ripple-effect');
+
+  const rect = button.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = event.clientX - rect.left - size / 2;
+  const y = event.clientY - rect.top - size / 2;
+
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+
+  button.appendChild(ripple);
+
+  // Remove ripple after animation
+  setTimeout(() => {
+    ripple.remove();
+  }, 600);
+}
+
+// Add ripple class and event listeners to interactive elements
+document.addEventListener('DOMContentLoaded', () => {
+  const rippleElements = document.querySelectorAll(`
+    .cta-button,
+    .filter-btn,
+    .screenshot-btn,
+    .cntform .btn,
+    .gallery-nav,
+    .project-card,
+    .dot,
+    .view-all-link,
+    .project-link,
+    .hamburger,
+    .modal-close,
+    .nav-links a
+  `);
+
+  rippleElements.forEach(element => {
+    element.classList.add('ripple');
+    element.addEventListener('click', createRipple);
+  });
+});
+
+// Pull-to-Refresh Indicator
+let pullToRefresh = {
+  startY: 0,
+  currentY: 0,
+  isDragging: false,
+  indicator: null
+};
+
+function initPullToRefresh() {
+  // Only on mobile
+  if (window.innerWidth > 768) return;
+
+  // Create indicator if it doesn't exist
+  if (!pullToRefresh.indicator) {
+    const indicator = document.createElement('div');
+    indicator.className = 'ptr-indicator';
+    indicator.innerHTML = '<span class="ptr-spinner"></span>Pull to refresh';
+    document.body.appendChild(indicator);
+    pullToRefresh.indicator = indicator;
+  }
+
+  // Touch start
+  document.addEventListener('touchstart', (e) => {
+    if (window.scrollY === 0) {
+      pullToRefresh.startY = e.touches[0].clientY;
+      pullToRefresh.isDragging = true;
+    }
+  }, { passive: true });
+
+  // Touch move
+  document.addEventListener('touchmove', (e) => {
+    if (!pullToRefresh.isDragging) return;
+
+    pullToRefresh.currentY = e.touches[0].clientY;
+    const diff = pullToRefresh.currentY - pullToRefresh.startY;
+
+    // Show indicator if pulled down more than 80px
+    if (diff > 80 && window.scrollY === 0) {
+      pullToRefresh.indicator.classList.add('visible');
+      pullToRefresh.indicator.innerHTML = '<span class="ptr-spinner"></span>Release to refresh';
+    } else if (diff > 30 && window.scrollY === 0) {
+      pullToRefresh.indicator.classList.add('visible');
+      pullToRefresh.indicator.innerHTML = '<span class="ptr-spinner"></span>Pull to refresh';
+    } else {
+      pullToRefresh.indicator.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  // Touch end
+  document.addEventListener('touchend', () => {
+    if (!pullToRefresh.isDragging) return;
+
+    const diff = pullToRefresh.currentY - pullToRefresh.startY;
+
+    if (diff > 80 && window.scrollY === 0) {
+      // Show refreshing state
+      pullToRefresh.indicator.innerHTML = '<span class="ptr-spinner"></span>Refreshing...';
+
+      // Reload page after a short delay
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
+    } else {
+      pullToRefresh.indicator.classList.remove('visible');
+    }
+
+    pullToRefresh.isDragging = false;
+  }, { passive: true });
+}
+
+// Initialize on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPullToRefresh);
+} else {
+  initPullToRefresh();
+}
+
+// Reinitialize on window resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    initPullToRefresh();
+  }, 250);
+});
