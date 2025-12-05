@@ -1921,25 +1921,6 @@ font-size: clamp(1rem, 2vw, 1.25rem);
 @media (max-width: 768px) {
   .nav-links {
     transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    will-change: left;
-  }
-
-  .nav-links.show {
-    animation: slideInBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-
-  @keyframes slideInBounce {
-    0% {
-      left: -100%;
-      opacity: 0;
-    }
-    60% {
-      left: 10px;
-    }
-    100% {
-      left: 0;
-      opacity: 1;
-    }
   }
 
   .nav-links a {

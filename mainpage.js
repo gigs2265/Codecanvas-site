@@ -3,13 +3,37 @@ const hamburger = document.getElementById('hamburger');
 const navLinks  = document.getElementById('nav-links');
 
 if (hamburger && navLinks) {
-  hamburger.addEventListener('click', () => {
+  let isAnimating = false;
+
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Prevent double-clicking during animation
+    if (isAnimating) return;
+
+    isAnimating = true;
     const open = navLinks.classList.toggle('show');
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+    // Reset animation lock after animation completes
+    setTimeout(() => {
+      isAnimating = false;
+    }, 500);
   });
 
   navLinks.addEventListener('click', (e) => {
     if (e.target.closest('a')) {
+      navLinks.classList.remove('show');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('show') &&
+        !navLinks.contains(e.target) &&
+        !hamburger.contains(e.target)) {
       navLinks.classList.remove('show');
       hamburger.setAttribute('aria-expanded', 'false');
     }
@@ -140,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .dot,
     .view-all-link,
     .project-link,
-    .hamburger,
     .modal-close,
     .nav-links a
   `);
