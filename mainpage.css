@@ -1009,7 +1009,7 @@ body {
   animation: fadeIn 0.5s ease-in 6s forwards;
 }
 
-/* Terminal Profile (Neofetch style) */
+/* Terminal Profile */
 .terminal-profile {
   display: grid;
   grid-template-columns: auto 1fr;
