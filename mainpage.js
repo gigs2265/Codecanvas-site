@@ -259,3 +259,55 @@ window.addEventListener('resize', () => {
     initPullToRefresh();
   }, 250);
 });
+
+// ============================================
+// CERTIFICATE MODAL FUNCTIONALITY
+// ============================================
+
+const certModal = document.getElementById('cert-modal');
+const certModalImage = document.getElementById('cert-modal-image');
+const certModalTitle = document.getElementById('cert-modal-title');
+const certModalClose = document.getElementById('cert-modal-close');
+
+if (certModal && certModalImage && certModalTitle && certModalClose) {
+  const certBadges = document.querySelectorAll('.cert-badge');
+
+  // Open modal when clicking on a certificate badge
+  certBadges.forEach(badge => {
+    badge.addEventListener('click', () => {
+      const certName = badge.querySelector('.cert-name').textContent;
+      const certImg = badge.querySelector('.cert-img');
+      const certSrc = certImg.src;
+      const certAlt = certImg.alt;
+
+      certModalTitle.textContent = certName;
+      certModalImage.src = certSrc;
+      certModalImage.alt = certAlt;
+
+      certModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Close modal when clicking the close button
+  certModalClose.addEventListener('click', closeCertModal);
+
+  // Close modal when clicking outside the content
+  certModal.addEventListener('click', (e) => {
+    if (e.target === certModal) {
+      closeCertModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && certModal.classList.contains('active')) {
+      closeCertModal();
+    }
+  });
+
+  function closeCertModal() {
+    certModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
